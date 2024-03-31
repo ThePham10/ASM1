@@ -22,13 +22,17 @@ public class Claim {
         this.cardID = "default";
         this.amount = 0;
         this.status = "default";
+        this.examDate = new Date();
+        this.claimDate = new Date();
     }
 
-    public Claim(String claimID, String cardID, double amount, String status) {
+    public Claim(String claimID, String cardID, double amount, String status, Date examDate, Date claimDate) {
         this.claimID = claimID;
         this.cardID = cardID;
         this.amount = amount;
         this.status = status;
+        this.examDate = new Date();
+        this.claimDate = new Date();
     }
 
     public boolean setStatus(String status) {
@@ -88,5 +92,22 @@ public class Claim {
 
     public ReceiverBankingInfo getReceiverBankingInfo() {
         return receiverBankingInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Claim{" +
+                "claimID='" + claimID + '\'' +
+                ", insuredPerson=" + insuredPerson +
+                ", cardID='" + cardID + '\'' +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", examDate=" + examDate +
+                ", examDateFormat=" + examDateFormat +
+                ", claimDate=" + claimDate +
+                ", claimDateFormat=" + claimDateFormat +
+                ", documentList=" + documentList +
+                ", receiverBankingInfo=" + receiverBankingInfo +
+                '}';
     }
 }

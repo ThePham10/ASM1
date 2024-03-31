@@ -1,13 +1,13 @@
-import java.util.Set;
+import java.util.List;
 
 public interface ClaimProcessManager {
-    public boolean add(Claim claim);
+    public boolean addClaim(Claim claim);
 
-    public boolean update(String claimID);
+    public boolean updateClaim(String claimID);
 
-    public void delete(String claimID);
+    public void deleteClaim(String claimID);
 
-    public Claim getOne(String claimID);
+    public Claim getOneClaim(String claimID);
 
-    public Set<Claim> getAll();
+    public List<Claim> getAllClaims();
 }

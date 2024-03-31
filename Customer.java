@@ -31,8 +31,14 @@ public class Customer implements ClaimProcessManager {
     public List<Claim> getClaimList() { return claimList; }
     public List<Customer> getDependentList() { return dependentList; }
 
+    public void setCustomerID(String customerID) { this.customerID = customerID; }
+
+    public void setFullName(String fullName) { this.fullName = fullName; }
+
+    public void setInsuranceCard(InsuranceCard insuranceCard) { this.insuranceCard = insuranceCard; }
+
     public boolean addDependent(Customer dependent) {
-        if (!dependent.equals(this)) {
+        if (!(dependent.equals(this)) && !(dependentList.contains(dependent))) {
             dependentList.add(dependent);
             return true;
         }
@@ -40,25 +46,25 @@ public class Customer implements ClaimProcessManager {
     }
 
     @Override
-    public boolean add(Claim claim) {
+    public boolean addClaim(Claim claim) {
         return claimList.add(claim);
     }
 
     @Override
-    public boolean update(String claimID) {
+    public boolean updateClaim(String claimID) {
         return false;
     }
 
     @Override
-    public void delete(String claimID) {
-        Claim claim = getOne(claimID);
+    public void deleteClaim(String claimID) {
+        Claim claim = getOneClaim(claimID);
         if (claim != null) {
             claimList.remove(claim);
         }
     }
 
     @Override
-    public Claim getOne(String claimID) {
+    public Claim getOneClaim(String claimID) {
         for (Claim claim:claimList) {
             if (claim.getClaimID().equals(claimID)) {
                 return claim;
@@ -68,8 +74,19 @@ public class Customer implements ClaimProcessManager {
     }
 
     @Override
-    public Set<Claim> getAll() {
-        return null;
+    public List<Claim> getAllClaims() {
+        return claimList;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerID='" + customerID + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", insuranceCard=" + insuranceCard +
+                ", claimList=" + claimList +
+                ", dependentList=" + dependentList +
+                '}';
     }
 }
 
