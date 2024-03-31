@@ -1,26 +1,13 @@
+import java.util.Set;
+
 public interface ClaimProcessManager {
-    public static boolean add() {
+    public boolean add(Claim claim);
 
-        return false;
-    }
+    public boolean update(String claimID);
 
-    public static boolean update() {
+    public void delete(String claimID);
 
-        return false;
-    }
+    public Claim getOne(String claimID);
 
-    public static boolean delete() {
-
-        return false;
-    }
-
-    public static boolean getOne() {
-
-        return false;
-    }
-
-    public static boolean getAll() {
-
-        return false;
-    }
+    public Set<Claim> getAll();
 }

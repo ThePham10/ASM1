@@ -45,4 +45,48 @@ public class Claim {
         }
         return false;
     }
+
+    public String getClaimID() {
+        return claimID;
+    }
+
+    public Customer getInsuredPerson() {
+        return insuredPerson;
+    }
+
+    public String getCardID() {
+        return cardID;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getExamDate() {
+        return examDate;
+    }
+
+    public SimpleDateFormat getExamDateFormat() {
+        return examDateFormat;
+    }
+
+    public Date getClaimDate() {
+        return claimDate;
+    }
+
+    public SimpleDateFormat getClaimDateFormat() {
+        return claimDateFormat;
+    }
+
+    public List<Document> getDocumentList() {
+        return documentList;
+    }
+
+    public ReceiverBankingInfo getReceiverBankingInfo() {
+        return receiverBankingInfo;
+    }
 }
