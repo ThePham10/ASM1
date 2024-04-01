@@ -1,7 +1,3 @@
-import javax.print.Doc;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class Claim {
@@ -10,10 +6,8 @@ public class Claim {
     private String cardID;
     private double amount;
     private String status;
-    private Date examDate;
-    SimpleDateFormat examDateFormat = new SimpleDateFormat("MM/dd/YY");
-    private Date claimDate;
-    SimpleDateFormat claimDateFormat = new SimpleDateFormat("MM/dd/YY");
+    private String examDate;
+    private String claimDate;
     private List<Document> documentList;
     private ReceiverBankingInfo receiverBankingInfo;
 
@@ -22,20 +16,30 @@ public class Claim {
         this.cardID = "default";
         this.amount = 0;
         this.status = "default";
-        this.examDate = new Date();
-        this.claimDate = new Date();
+        this.examDate = "default";
+        this.claimDate = "default";
     }
 
-    public Claim(String claimID, String cardID, double amount, String status, Date examDate, Date claimDate) {
+    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status, String examDate) {
         this.claimID = claimID;
+        this.insuredPerson = insuredPerson;
         this.cardID = cardID;
         this.amount = amount;
         this.status = status;
-        this.examDate = new Date();
-        this.claimDate = new Date();
+        this.examDate = "default";
     }
 
-    public boolean setStatus(String status) {
+    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status, String examDate, String claimDate) {
+        this.claimID = claimID;
+        this.insuredPerson = insuredPerson;
+        this.cardID = cardID;
+        this.amount = amount;
+        this.status = status;
+        this.examDate = "default";
+        this.claimDate = "default";
+    }
+
+    public void setStatus(String status) {
         String[] statuses = {"New", "Processing", "Done"};
         boolean statusChecked = false;
         for (String availableStatus:statuses) {
@@ -45,9 +49,20 @@ public class Claim {
         }
         if (statusChecked) {
             this.status = status;
-            return true;
+            statusChecked = true;
         }
-        return false;
+    }
+
+
+
+    public String generateClaimID () {
+        StringBuilder stringBuilder1 = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            int randomNumber = (int) (Math.random() * 10);
+            stringBuilder1.append(randomNumber);
+        }
+        String randomString = stringBuilder1.toString();
+        return "C" + randomString;
     }
 
     public String getClaimID() {
@@ -70,20 +85,12 @@ public class Claim {
         return status;
     }
 
-    public Date getExamDate() {
+    public String getExamDate() {
         return examDate;
     }
 
-    public SimpleDateFormat getExamDateFormat() {
-        return examDateFormat;
-    }
-
-    public Date getClaimDate() {
+    public String getClaimDate() {
         return claimDate;
-    }
-
-    public SimpleDateFormat getClaimDateFormat() {
-        return claimDateFormat;
     }
 
     public List<Document> getDocumentList() {
@@ -103,9 +110,9 @@ public class Claim {
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
                 ", examDate=" + examDate +
-                ", examDateFormat=" + examDateFormat +
+                ", examDateFormat=" + examDate +
                 ", claimDate=" + claimDate +
-                ", claimDateFormat=" + claimDateFormat +
+                ", claimDateFormat=" + claimDate +
                 ", documentList=" + documentList +
                 ", receiverBankingInfo=" + receiverBankingInfo +
                 '}';

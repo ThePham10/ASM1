@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Customer implements ClaimProcessManager {
     private String customerID;
@@ -45,6 +44,34 @@ public class Customer implements ClaimProcessManager {
         return false;
     }
 
+    public String generateCustomerID() {
+        StringBuilder stringBuilder2 = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 7; i++) {
+            int randomNumber = random.nextInt(10);
+            stringBuilder2.append(randomNumber);
+        }
+        String randomString = stringBuilder2.toString();
+        return "F" + randomString;
+    }
+
+    public InsuranceCard generateInsuranceCard (InsuranceCard insuranceCard) {
+        String insuranceCardID = (String) insuranceCard.generateCardID();
+        insuranceCard.setInsuranceCardID(insuranceCardID);
+        String policyOwner = "RMIT";
+        insuranceCard.setPolicyOwner(policyOwner);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, 1);
+        Date expirationDate1 = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String expirationDate2 = dateFormat.format(expirationDate1);
+        insuranceCard.setExpirationDate(expirationDate2);
+
+        return new InsuranceCard(insuranceCardID, this, policyOwner, expirationDate2);
+    }
+
+
+
     @Override
     public boolean addClaim(Claim claim) {
         return claimList.add(claim);
@@ -81,11 +108,11 @@ public class Customer implements ClaimProcessManager {
     @Override
     public String toString() {
         return "Customer{" +
-                "customerID='" + customerID + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", insuranceCard=" + insuranceCard +
-                ", claimList=" + claimList +
-                ", dependentList=" + dependentList +
+                "customerID = '" + customerID + '\'' +
+                ", fullName = '" + fullName + '\'' +
+                ", insuranceCard = " + insuranceCard.getInsuranceCardID() +
+                ", claimList = " + claimList +
+                ", dependentList = " + dependentList +
                 '}';
     }
 }
