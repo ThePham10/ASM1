@@ -18,15 +18,6 @@ public class InsuranceCard {
         this.expirationDate = expirationDate;
     }
 
-    public String generateCardID () {
-        StringBuilder stringBuilder3 = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            int randomNumber = (int) (Math.random() * 10);
-            stringBuilder3.append(randomNumber);
-        }
-        return stringBuilder3.toString();
-    }
-
     public String getInsuranceCardID() { return insuranceCardID; }
 
     public Customer getCardHolder() { return cardHolder; }

@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Customer implements ClaimProcessManager {
+public class Customer implements ClaimProcessManager, DependentList {
     private String customerID;
     private String fullName;
     private InsuranceCard insuranceCard;
@@ -44,33 +44,47 @@ public class Customer implements ClaimProcessManager {
         return false;
     }
 
-    public String generateCustomerID() {
-        StringBuilder stringBuilder2 = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 7; i++) {
-            int randomNumber = random.nextInt(10);
-            stringBuilder2.append(randomNumber);
+    @Override
+    public void deleteDependent(String customerID) {
+        Customer dependent = getOneDependent(customerID);
+        if (dependent != null) {
+            this.dependentList.remove(dependent);
         }
-        String randomString = stringBuilder2.toString();
-        return "F" + randomString;
+    }
+
+    @Override
+    public Customer getOneDependent(String dependentID) {
+        for (Customer dependent:dependentList) {
+            if (dependent.getCustomerID().equals(dependentID)) {
+                return dependent;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Customer> getAllDependents() {
+        return dependentList;
     }
 
     public InsuranceCard generateInsuranceCard (InsuranceCard insuranceCard) {
-        String insuranceCardID = (String) insuranceCard.generateCardID();
+        int ID;
+        System.out.print("Create an insurance card's ID (10 digits): ");
+        Scanner scanID = new Scanner(System.in);
+        ID = scanID.nextInt();
+        String insuranceCardID = String.valueOf(ID);
         insuranceCard.setInsuranceCardID(insuranceCardID);
+
         String policyOwner = "RMIT";
         insuranceCard.setPolicyOwner(policyOwner);
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, 1);
         Date expirationDate1 = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String expirationDate2 = dateFormat.format(expirationDate1);
         insuranceCard.setExpirationDate(expirationDate2);
-
         return new InsuranceCard(insuranceCardID, this, policyOwner, expirationDate2);
     }
-
-
 
     @Override
     public boolean addClaim(Claim claim) {
@@ -86,7 +100,7 @@ public class Customer implements ClaimProcessManager {
     public void deleteClaim(String claimID) {
         Claim claim = getOneClaim(claimID);
         if (claim != null) {
-            claimList.remove(claim);
+            this.claimList.remove(claim);
         }
     }
 
@@ -107,13 +121,12 @@ public class Customer implements ClaimProcessManager {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerID = '" + customerID + '\'' +
-                ", fullName = '" + fullName + '\'' +
-                ", insuranceCard = " + insuranceCard.getInsuranceCardID() +
-                ", claimList = " + claimList +
-                ", dependentList = " + dependentList +
-                '}';
+        return "Customer:\n" +
+                "CustomerID: " + customerID + "\n" +
+                "FullName: " + fullName + "\n" +
+                "InsuranceCard: " + insuranceCard.getInsuranceCardID() + "\n" +
+                "ClaimList: \n" + claimList + "\n" +
+                "DependentList: " + dependentList + "\n";
     }
 }
 

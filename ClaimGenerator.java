@@ -4,9 +4,15 @@ import java.util.Scanner;
 
 public class ClaimGenerator {
 
-    public Claim createClaim(Claim claim, Customer customer, InsuranceCard insuranceCard) {
-        String claimID = (String) claim.generateClaimID();
+    public static Claim createClaim(Claim claim, Customer customer) {
+        int ID;
+        System.out.print("Create a claim's ID (10 digits): ");
+        Scanner scanID = new Scanner(System.in);
+        ID = scanID.nextInt();
+        String claimID = (String) "F" + ID;
         claim.setClaimID(claimID);
+
+        claim.setInsuredPerson(customer);
 
         String insuranceCardID = String.valueOf(customer.getInsuranceCard().getInsuranceCardID());
         claim.setCardID(insuranceCardID);
@@ -20,12 +26,12 @@ public class ClaimGenerator {
         String status = "New";
         claim.setStatus(status);
 
-        Date examDate1 = new Date();
+        Date claimDate1 = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String examDate2 = (String) dateFormat.format(examDate1);
-        claim.setClaimDate(examDate2);
+        String claimDate2 = (String) dateFormat.format(claimDate1);
+        claim.setClaimDate(claimDate2);
 
-        return new Claim(claimID, customer, insuranceCardID, amount, status, examDate2);
+        return new Claim(claimID, customer, insuranceCardID, amount, status, claimDate2);
     }
 
     public static Customer createCustomer(Customer customer) {
@@ -33,7 +39,11 @@ public class ClaimGenerator {
         customer.generateInsuranceCard(insuranceCard1);
         customer.setInsuranceCard(insuranceCard1);
 
-        String customerID = customer.generateCustomerID();
+        int ID;
+        System.out.print("Create a customer's ID (10 digits): ");
+        Scanner scanID = new Scanner(System.in);
+        ID = scanID.nextInt();
+        String customerID = (String) "C" + ID;
         customer.setCustomerID(customerID);
 
         String fullName;

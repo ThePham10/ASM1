@@ -117,24 +117,21 @@ public class Claim {
         this.claimDate = claimDate;
     }
 
+
     public ReceiverBankingInfo getReceiverBankingInfo() {
         return receiverBankingInfo;
     }
 
     @Override
     public String toString() {
-        return "Claim{" +
-                "claimID='" + claimID + '\'' +
-                ", insuredPerson=" + insuredPerson +
-                ", cardID='" + cardID + '\'' +
-                ", amount=" + amount +
-                ", status='" + status + '\'' +
-                ", examDate=" + examDate +
-                ", examDateFormat=" + examDate +
-                ", claimDate=" + claimDate +
-                ", claimDateFormat=" + claimDate +
-                ", documentList=" + documentList +
-                ", receiverBankingInfo=" + receiverBankingInfo +
-                '}';
+        return  "Claim: " +
+                "ClaimID: " + claimID +
+                ", InsuredPerson: " + insuredPerson.getFullName() +
+                ", CardID: " + cardID +
+                ", Amount:" + amount +
+                ", Status: " + status +
+                ", ExamDate: " + examDate +
+                ", ClaimDate: " + claimDate +
+                ", ReceiverBankingInfo: " + receiverBankingInfo;
     }
 }
