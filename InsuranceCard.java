@@ -32,6 +32,7 @@ public class InsuranceCard {
     public Customer getCardHolder() { return cardHolder; }
 
     public String getPolicyOwner() { return policyOwner; }
+    public String getExpirationDate() { return expirationDate; }
 
     public void setInsuranceCardID(String insuranceCardID) {this.insuranceCardID = insuranceCardID; }
 

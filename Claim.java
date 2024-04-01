@@ -93,8 +93,28 @@ public class Claim {
         return claimDate;
     }
 
-    public List<Document> getDocumentList() {
-        return documentList;
+    public void setClaimID(String claimID) {
+        this.claimID = claimID;
+    }
+
+    public void setInsuredPerson(Customer insuredPerson) {
+        this.insuredPerson = insuredPerson;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setExamDate(String examDate) {
+        this.examDate = examDate;
+    }
+
+    public void setClaimDate(String claimDate) {
+        this.claimDate = claimDate;
     }
 
     public ReceiverBankingInfo getReceiverBankingInfo() {
