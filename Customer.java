@@ -68,11 +68,12 @@ public class Customer implements ClaimProcessManager, DependentList {
     }
 
     public InsuranceCard generateInsuranceCard (InsuranceCard insuranceCard) {
-        int ID;
-        System.out.print("Create an insurance card's ID (10 digits): ");
-        Scanner scanID = new Scanner(System.in);
-        ID = scanID.nextInt();
-        String insuranceCardID = String.valueOf(ID);
+        String insuranceCardID = "";
+        while (insuranceCardID.length() != 10) {
+            System.out.print("Create an insurance card's ID (10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            insuranceCardID = scanID.next();
+        }
         insuranceCard.setInsuranceCardID(insuranceCardID);
 
         String policyOwner = "RMIT";
@@ -89,6 +90,15 @@ public class Customer implements ClaimProcessManager, DependentList {
     @Override
     public boolean addClaim(Claim claim) {
         return claimList.add(claim);
+    }
+
+    public boolean checkClaimID(String claimID1) {
+        for (Claim claim:claimList) {
+            if (claimID1.equals(claim.getClaimID())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -125,7 +135,7 @@ public class Customer implements ClaimProcessManager, DependentList {
                 "CustomerID: " + customerID + "\n" +
                 "FullName: " + fullName + "\n" +
                 "InsuranceCard: " + insuranceCard.getInsuranceCardID() + "\n" +
-                "ClaimList: \n" + claimList + "\n" +
+                "ClaimList: " + "\n" + claimList + "\n" +
                 "DependentList: " + dependentList + "\n";
     }
 }

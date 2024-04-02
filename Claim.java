@@ -9,7 +9,7 @@ public class Claim {
     private String examDate;
     private String claimDate;
     private List<Document> documentList;
-    private ReceiverBankingInfo receiverBankingInfo;
+    private ReceiverBankingInfo bankingInfo;
 
     public Claim() {
         this.claimID = "default";
@@ -20,23 +20,16 @@ public class Claim {
         this.claimDate = "default";
     }
 
-    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status, String examDate) {
+    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status,
+                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo) {
         this.claimID = claimID;
         this.insuredPerson = insuredPerson;
         this.cardID = cardID;
         this.amount = amount;
         this.status = status;
-        this.examDate = "default";
-    }
-
-    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status, String examDate, String claimDate) {
-        this.claimID = claimID;
-        this.insuredPerson = insuredPerson;
-        this.cardID = cardID;
-        this.amount = amount;
-        this.status = status;
-        this.examDate = "default";
-        this.claimDate = "default";
+        this.examDate = examDate;
+        this.claimDate = claimDate;
+        this.bankingInfo = bankingInfo;
     }
 
     public void setStatus(String status) {
@@ -52,8 +45,6 @@ public class Claim {
             statusChecked = true;
         }
     }
-
-
 
     public String generateClaimID () {
         StringBuilder stringBuilder1 = new StringBuilder();
@@ -118,20 +109,24 @@ public class Claim {
     }
 
 
-    public ReceiverBankingInfo getReceiverBankingInfo() {
-        return receiverBankingInfo;
+    public ReceiverBankingInfo getBankingInfo() {
+        return bankingInfo;
     }
+
+    public void setBankingInfo(ReceiverBankingInfo bankingInfo) { this.bankingInfo = bankingInfo; }
+    public void setBankName(String bankName) { this.bankingInfo.setBank(bankName); }
+    public void setNameInBank(String nameInBank) { this.bankingInfo.setName(nameInBank); }
+    public void setBankNumber(String bankNumber) { this.bankingInfo.setBankNumber(bankNumber); }
 
     @Override
     public String toString() {
-        return  "Claim: " +
-                "ClaimID: " + claimID +
+        return  "\nClaimID: " + claimID +
                 ", InsuredPerson: " + insuredPerson.getFullName() +
                 ", CardID: " + cardID +
                 ", Amount:" + amount +
                 ", Status: " + status +
                 ", ExamDate: " + examDate +
                 ", ClaimDate: " + claimDate +
-                ", ReceiverBankingInfo: " + receiverBankingInfo;
+                ", ReceiverBankingInfo: " + bankingInfo + "\n";
     }
 }

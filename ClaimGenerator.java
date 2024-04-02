@@ -4,12 +4,19 @@ import java.util.Scanner;
 
 public class ClaimGenerator {
 
-    public static Claim createClaim(Claim claim, Customer customer) {
-        int ID;
-        System.out.print("Create a claim's ID (10 digits): ");
-        Scanner scanID = new Scanner(System.in);
-        ID = scanID.nextInt();
-        String claimID = (String) "F" + ID;
+    public static Claim createClaim(Claim claim, Customer customer, ReceiverBankingInfo bankingInfo) {
+        String claimID = "";
+        while (claimID.length() != 11) {
+            System.out.print("Create a claim's ID ('F' + 10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            claimID = scanID.next();
+            boolean checkedClaimID = customer.checkClaimID(claimID);
+            while (!checkedClaimID) {
+                System.out.print("Create a claim's ID ('F' + 10 number digits): ");
+                claimID = scanID.next();
+                checkedClaimID = customer.checkClaimID(claimID);
+            }
+        }
         claim.setClaimID(claimID);
 
         claim.setInsuredPerson(customer);
@@ -26,24 +33,48 @@ public class ClaimGenerator {
         String status = "New";
         claim.setStatus(status);
 
+        Date examDate1 = new Date();
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String examDate2 = dateFormat1.format(examDate1);
+        claim.setClaimDate(examDate2);
+
         Date claimDate1 = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String claimDate2 = (String) dateFormat.format(claimDate1);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String claimDate2 = dateFormat2.format(claimDate1);
         claim.setClaimDate(claimDate2);
 
-        return new Claim(claimID, customer, insuranceCardID, amount, status, claimDate2);
+        claim.setBankingInfo(bankingInfo);
+        String customerName = customer.getFullName();
+        claim.setNameInBank(customerName);
+
+        String bankName;
+        System.out.println("Enter Bank's Name: ");
+        Scanner scanBank = new Scanner(System.in);
+        bankName = scanBank.nextLine();
+        claim.setBankName(bankName);
+
+        String bankNumber = "";
+        while (bankNumber.length() != 10) {
+            System.out.print("Enter Bank's Number (10 number digits): ");
+            Scanner scanBankNumber = new Scanner(System.in);
+            bankNumber = scanBankNumber.next();
+        }
+        claim.setBankNumber(bankNumber);
+
+        return new Claim(claimID, customer, insuranceCardID, amount, status, examDate2, claimDate2, new ReceiverBankingInfo(bankName, customerName, bankNumber));
     }
 
     public static Customer createCustomer(Customer customer) {
-        InsuranceCard insuranceCard1 = new InsuranceCard();
-        customer.generateInsuranceCard(insuranceCard1);
-        customer.setInsuranceCard(insuranceCard1);
+        InsuranceCard insuranceCard = new InsuranceCard();
+        customer.generateInsuranceCard(insuranceCard);
+        customer.setInsuranceCard(insuranceCard);
 
-        int ID;
-        System.out.print("Create a customer's ID (10 digits): ");
-        Scanner scanID = new Scanner(System.in);
-        ID = scanID.nextInt();
-        String customerID = (String) "C" + ID;
+        String customerID = "";
+        while (customerID.length()!= 11) {
+            System.out.print("Create a customer's ID ('C' + 10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            customerID = scanID.next();
+        }
         customer.setCustomerID(customerID);
 
         String fullName;
@@ -52,6 +83,6 @@ public class ClaimGenerator {
         fullName = scanName.nextLine();
         customer.setFullName(fullName);
 
-        return new Customer(customerID, fullName, insuranceCard1);
+        return new Customer(customerID, fullName, insuranceCard);
     }
 }
