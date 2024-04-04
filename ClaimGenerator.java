@@ -75,21 +75,24 @@ public class ClaimGenerator {
             Scanner scanID = new Scanner(System.in);
             customerID = scanID.next();
         }
-        customer.setCustomerID(customerID);
+        policyHolder.setCustomerID(customerID);
 
         String fullName;
         System.out.println("Enter customer's name: ");
         Scanner scanName = new Scanner(System.in);
         fullName = scanName.nextLine();
-        customer.setFullName(fullName);
+        policyHolder.setFullName(fullName);
 
-        return new Customer(customerID, fullName, insuranceCard);
+        String policyOwner = policyHolder.getInsuranceCard().getPolicyOwner();
+        policyHolder.setPolicyOwner(policyOwner);
+
+        return new PolicyHolder(customerID, fullName, insuranceCard, policyOwner);
     }
 
-    public static Dependent createDependent(Dependent dependent) {
+    public static Dependent createDependent(Dependent dependent, PolicyHolder policyHolder) {
         InsuranceCard insuranceCard = new InsuranceCard();
-        customer.createInsuranceCard(insuranceCard);
-        customer.setInsuranceCard(insuranceCard);
+        dependent.createInsuranceCard(insuranceCard);
+        dependent.setInsuranceCard(insuranceCard);
 
         String customerID = "";
         while (customerID.length()!= 11) {
@@ -97,15 +100,17 @@ public class ClaimGenerator {
             Scanner scanID = new Scanner(System.in);
             customerID = scanID.next();
         }
-        customer.setCustomerID(customerID);
+        dependent.setCustomerID(customerID);
 
         String fullName;
         System.out.println("Enter customer's name: ");
         Scanner scanName = new Scanner(System.in);
         fullName = scanName.nextLine();
-        customer.setFullName(fullName);
+        dependent.setFullName(fullName);
 
-        return new Customer(customerID, fullName, insuranceCard);
+        dependent.setPolicyHolder(policyHolder);
+
+        return new Dependent(customerID, fullName, insuranceCard, policyHolder);
     }
 
 }
