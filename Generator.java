@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class ClaimGenerator {
+public class Generator {
 
     public static Claim createClaim(Claim claim, Customer customer, ReceiverBankingInfo bankingInfo) {
         String claimID = "";

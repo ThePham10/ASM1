@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Dependent extends Customer implements ClaimProcessManager {
+public class Dependent extends Customer {
     private PolicyHolder policyHolder;
 
     public Dependent() {
@@ -22,11 +22,10 @@ public class Dependent extends Customer implements ClaimProcessManager {
     public void setPolicyHolder(PolicyHolder policyHolder) { this.policyHolder = policyHolder; }
 
     public String toString() {
-        return  "Dependent:\n" +
-                "Dependent ID: " + getCustomerID() + "\n" +
-                "FullName: " + getFullName() + "\n" +
-                "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
-                "Policy Holder: " + policyHolder + "\n" +
-                "ClaimList: " + "\n" + getAllClaims() + "\n" ;
+        return  "\nDependent ID: " + getCustomerID() +
+                ", FullName: " + getFullName() +
+                ", InsuranceCard: " + getInsuranceCard().getInsuranceCardID() +
+                ", Policy Holder: " + policyHolder.getFullName() +
+                ", ClaimList: " + "\n" + getClaimList() + "\n" ;
     }
 }

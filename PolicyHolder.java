@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PolicyHolder extends Customer implements DependentList, ClaimProcessManager {
+public class PolicyHolder extends Customer implements DependentList {
     private String policyOwner;
     private List<Dependent> dependentList;
 
@@ -24,19 +24,31 @@ public class PolicyHolder extends Customer implements DependentList, ClaimProces
     public List<Dependent> getDependentList() { return dependentList; }
     public void setDependentList(List<Dependent> dependentList) { this.dependentList = dependentList; }
 
-    public boolean addDependent(Dependent dependent) {
-        if (!(dependentList.contains(dependent))) {
-            dependentList.add(dependent);
-            return true;
-        }
-        return false;
+    public String toString() {
+        return  "Policy Holder:\n" +
+                "Policy Holder ID: " + getCustomerID() + "\n" +
+                "FullName: " + getFullName() + "\n" +
+                "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
+                "Policy Owner: " + policyOwner + "\n" +
+                "ClaimList: " + "\n" + getClaimList() + "\n" +
+                "Dependent List: " + "\n" + dependentList;
     }
 
     @Override
-    public void deleteDependent(String dependentID) {
-        Dependent dependent = getOneDependent(dependentID);
-        if (dependent != null) {
-            this.dependentList.remove(dependent);
+    public void addDependent(Dependent dependent) {
+        if (!(dependentList.contains(dependent))) {
+            dependentList.add(dependent);
+        } else {
+            System.out.println("Dependent is already on the list!");
+        }
+    }
+
+    @Override
+    public void deleteDependent(Dependent dependent) {
+        if (dependentList.contains(dependent) && dependent != null) {
+            dependentList.remove(dependent);
+        } else {
+            System.out.println("Dependent is not found on the list!");
         }
     }
 
@@ -53,15 +65,5 @@ public class PolicyHolder extends Customer implements DependentList, ClaimProces
     @Override
     public List<Dependent> getAllDependents() {
         return dependentList;
-    }
-
-    public String toString() {
-        return  "Policy Holder:\n" +
-                "Policy Holder ID: " + getCustomerID() + "\n" +
-                "FullName: " + getFullName() + "\n" +
-                "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
-                "Policy Owner: " + policyOwner + "\n" +
-                "ClaimList: " + "\n" + getAllClaims() + "\n" +
-                "Dependent List: " + "\n" + dependentList + "\n";
     }
 }
