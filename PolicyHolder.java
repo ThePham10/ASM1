@@ -15,8 +15,8 @@ public class PolicyHolder extends Customer implements DependentList, ClaimProces
                         String policyOwner) {
         super(customerID, fullName, insuranceCard);
         this.policyOwner = policyOwner;
-        claimList = new ArrayList<Claim>();
         dependentList = new ArrayList<Dependent>();
+        claimList = new ArrayList<Claim>();
     }
 
     public String getPolicyOwner() { return policyOwner; }
