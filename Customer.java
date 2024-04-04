@@ -77,6 +77,30 @@ public class Customer implements ClaimProcessManager{
         return claimList;
     }
 
+    public InsuranceCard createInsuranceCard(InsuranceCard insuranceCard) {
+        String insuranceCardID = "";
+        while (insuranceCardID.length() != 10) {
+            System.out.print("Create an insurance card's ID (10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            insuranceCardID = scanID.next();
+        }
+        insuranceCard.setInsuranceCardID(insuranceCardID);
+
+        String policyOwner;
+        System.out.println("Enter your Policy Owner/or your Policy Holder's Owner: ");
+        Scanner scanPolicyOwner = new Scanner(System.in);
+        policyOwner = scanPolicyOwner.nextLine();
+        insuranceCard.setPolicyOwner(policyOwner);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, 1);
+        Date expirationDate1 = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String expirationDate2 = dateFormat.format(expirationDate1);
+        insuranceCard.setExpirationDate(expirationDate2);
+        return new InsuranceCard(insuranceCardID, this, policyOwner, expirationDate2);
+    }
+
     @Override
     public String toString() {
         return "Customer:\n" +

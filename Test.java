@@ -9,9 +9,14 @@ public class Test {
         ClaimGenerator.createClaim(claimCus1, cus1, bankingInfoC1Cus1);
         cus1.addClaim(claimCus1);
 
-/*        Claim claimCus2 = new Claim();
-        ClaimGenerator.createClaim(claimCus2, cus1);
-        cus1.addClaim(claimCus2);*/
+        System.out.println(cus1.toString());
+
+        Claim claimCus2 = new Claim();
+        ReceiverBankingInfo bankingInfoC2Cus1 = new ReceiverBankingInfo();
+        ClaimGenerator.createClaim(claimCus2, cus1, bankingInfoC2Cus1);
+        cus1.addClaim(claimCus2);
+
+        cus1.deleteClaim(claimCus1.getClaimID());
 
         System.out.println(cus1.toString());
     }

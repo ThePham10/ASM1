@@ -64,4 +64,48 @@ public class ClaimGenerator {
         return new Claim(claimID, customer, insuranceCardID, amount, status, examDate2, claimDate2, new ReceiverBankingInfo(bankName, customerName, bankNumber));
     }
 
+    public static PolicyHolder createPolicyHolder(PolicyHolder policyHolder) {
+        InsuranceCard insuranceCard = new InsuranceCard();
+        policyHolder.createInsuranceCard(insuranceCard);
+        policyHolder.setInsuranceCard(insuranceCard);
+
+        String customerID = "";
+        while (customerID.length()!= 11) {
+            System.out.print("Create a customer's ID ('C' + 10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            customerID = scanID.next();
+        }
+        customer.setCustomerID(customerID);
+
+        String fullName;
+        System.out.println("Enter customer's name: ");
+        Scanner scanName = new Scanner(System.in);
+        fullName = scanName.nextLine();
+        customer.setFullName(fullName);
+
+        return new Customer(customerID, fullName, insuranceCard);
+    }
+
+    public static Dependent createDependent(Dependent dependent) {
+        InsuranceCard insuranceCard = new InsuranceCard();
+        customer.createInsuranceCard(insuranceCard);
+        customer.setInsuranceCard(insuranceCard);
+
+        String customerID = "";
+        while (customerID.length()!= 11) {
+            System.out.print("Create a customer's ID ('C' + 10 number digits): ");
+            Scanner scanID = new Scanner(System.in);
+            customerID = scanID.next();
+        }
+        customer.setCustomerID(customerID);
+
+        String fullName;
+        System.out.println("Enter customer's name: ");
+        Scanner scanName = new Scanner(System.in);
+        fullName = scanName.nextLine();
+        customer.setFullName(fullName);
+
+        return new Customer(customerID, fullName, insuranceCard);
+    }
+
 }
