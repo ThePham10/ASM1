@@ -1,11 +1,11 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class Customer implements ClaimProcessManager{
+public class Customer implements ClaimProcessManager {
     private String customerID;
     private String fullName;
     private InsuranceCard insuranceCard;
-    private List<Claim> claimList;
+    protected List<Claim> claimList;
 
     public Customer() {
         this.customerID = "default";
@@ -24,7 +24,6 @@ public class Customer implements ClaimProcessManager{
     public String getCustomerID() { return customerID; }
     public String getFullName() { return fullName; }
     public InsuranceCard getInsuranceCard() { return insuranceCard; }
-    public List<Claim> getClaimList() { return claimList; }
     public void setCustomerID(String customerID) { this.customerID = customerID; }
 
     public void setFullName(String fullName) { this.fullName = fullName; }

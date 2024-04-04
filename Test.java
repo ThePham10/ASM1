@@ -1,23 +1,20 @@
 public class Test {
     public static void main(String[] args) {
-        Customer cus1 = new Customer();
-        ReceiverBankingInfo bankingInfoC1Cus1 = new ReceiverBankingInfo();
-        ClaimGenerator.createCustomer(cus1);
-        System.out.println(cus1.toString());
+        PolicyHolder pH1 = new PolicyHolder();
+        pH1 = new PolicyHolder("C0000000001", "Thanh The", new InsuranceCard("1111111111", pH1, "RMIT", "2025/04/25"), "RMIT");
+        System.out.println(pH1);
 
-        Claim claimCus1 = new Claim();
-        ClaimGenerator.createClaim(claimCus1, cus1, bankingInfoC1Cus1);
-        cus1.addClaim(claimCus1);
+        ReceiverBankingInfo bankingInfo1pH1 = new ReceiverBankingInfo();
+        Claim claim1pH1 = new Claim();
+        ClaimGenerator.createClaim(claim1pH1, pH1, bankingInfo1pH1);
+        pH1.addClaim(claim1pH1);
+        System.out.println(pH1);
 
-        System.out.println(cus1.toString());
+/*        ReceiverBankingInfo bankingInfo2pH1 = new ReceiverBankingInfo();
+        Claim claim2pH1 = new Claim();
+        ClaimGenerator.createClaim(claim2pH1, pH1, bankingInfo2pH1);
+        pH1.addClaim(claim2pH1);
 
-        Claim claimCus2 = new Claim();
-        ReceiverBankingInfo bankingInfoC2Cus1 = new ReceiverBankingInfo();
-        ClaimGenerator.createClaim(claimCus2, cus1, bankingInfoC2Cus1);
-        cus1.addClaim(claimCus2);
-
-        cus1.deleteClaim(claimCus1.getClaimID());
-
-        System.out.println(cus1.toString());
+        System.out.println(pH1);*/
     }
 }

@@ -1,13 +1,13 @@
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class PolicyHolder extends Customer implements DependentList {
+public class PolicyHolder extends Customer implements DependentList, ClaimProcessManager {
     private String policyOwner;
     private List<Dependent> dependentList;
 
     public PolicyHolder() {
         super();
         this.policyOwner = "default";
+        claimList = new ArrayList<Claim>();
         dependentList = new ArrayList<Dependent>();
     }
 
@@ -15,6 +15,7 @@ public class PolicyHolder extends Customer implements DependentList {
                         String policyOwner) {
         super(customerID, fullName, insuranceCard);
         this.policyOwner = policyOwner;
+        claimList = new ArrayList<Claim>();
         dependentList = new ArrayList<Dependent>();
     }
 
@@ -60,7 +61,7 @@ public class PolicyHolder extends Customer implements DependentList {
                 "FullName: " + getFullName() + "\n" +
                 "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
                 "Policy Owner: " + policyOwner + "\n" +
-                "ClaimList: " + "\n" + getClaimList() + "\n" +
+                "ClaimList: " + "\n" + getAllClaims() + "\n" +
                 "Dependent List: " + "\n" + dependentList + "\n";
     }
 }

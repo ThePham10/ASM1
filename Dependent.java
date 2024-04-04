@@ -1,21 +1,20 @@
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
-public class Dependent extends Customer {
+public class Dependent extends Customer implements ClaimProcessManager {
     private PolicyHolder policyHolder;
 
     public Dependent() {
         super();
         this.policyHolder = null;
+        claimList = new ArrayList<Claim>();
     }
 
     public Dependent(String customerID, String fullName, InsuranceCard insuranceCard,
                         PolicyHolder policyHolder) {
         super(customerID, fullName, insuranceCard);
         this.policyHolder = policyHolder;
+        claimList = new ArrayList<Claim>();
     }
 
     public PolicyHolder getPolicyHolder() { return policyHolder; }
@@ -28,6 +27,6 @@ public class Dependent extends Customer {
                 "FullName: " + getFullName() + "\n" +
                 "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
                 "Policy Holder: " + policyHolder + "\n" +
-                "ClaimList: " + "\n" + getClaimList() + "\n" ;
+                "ClaimList: " + "\n" + getAllClaims() + "\n" ;
     }
 }
