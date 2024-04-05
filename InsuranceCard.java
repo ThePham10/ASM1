@@ -11,11 +11,11 @@ public class InsuranceCard {
         this.expirationDate = "default";
     }
 
-    public InsuranceCard(String insuranceCardID, Customer cardHolder, String policyOwner, String expirationDate) {
+    public InsuranceCard(String insuranceCardID, String policyOwner, String expirationDate, Customer cardHolder) {
         this.insuranceCardID = insuranceCardID;
-        this.cardHolder = cardHolder;
         this.policyOwner = policyOwner;
         this.expirationDate = expirationDate;
+        this.cardHolder = cardHolder;
     }
 
     public String getInsuranceCardID() { return insuranceCardID; }

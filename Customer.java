@@ -52,7 +52,7 @@ public class Customer implements ClaimDAO{
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String expirationDate2 = dateFormat.format(expirationDate1);
         insuranceCard.setExpirationDate(expirationDate2);
-        return new InsuranceCard(insuranceCardID, this, policyOwner, expirationDate2);
+        return new InsuranceCard(insuranceCardID, policyOwner, expirationDate2, this);
     }
 
     @Override
