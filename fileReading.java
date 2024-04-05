@@ -36,5 +36,9 @@ public class fileReading {
         for (PolicyHolder ApolicyHolder:policyHolders) {
             System.out.println(ApolicyHolder.toString());
         }
+
+        for (PolicyHolder ApolicyHolder:policyHolders) {
+            policyHolders.get(2);
+        }
     }
 }

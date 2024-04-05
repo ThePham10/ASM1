@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PolicyHolder extends Customer implements DependentList {
     private String policyOwner;
@@ -24,7 +25,7 @@ public class PolicyHolder extends Customer implements DependentList {
     public void setDependentList(List<Dependent> dependentList) { this.dependentList = dependentList; }
 
     public String toString() {
-        return  "Policy Holder:\n" +
+        return  "\nPolicy Holder:\n" +
                 "Policy Holder ID: " + getCustomerID() + "\n" +
                 "FullName: " + getFullName() + "\n" +
                 "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +

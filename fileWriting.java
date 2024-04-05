@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Test {
+public class fileWriting {
     public static void main(String[] args) throws IOException {
         List<PolicyHolder> policyHolders = new ArrayList<>();
-        List<InsuranceCard> insuranceCards = new ArrayList<>();
 
         String filePath = "PolicyHolder.txt";
         File file = new File(filePath);
@@ -79,11 +78,6 @@ public class Test {
             System.out.println("An error occurred while creating the file.");
             e.printStackTrace();
         }
-
-
-        /*System.out.println(pH1); System.out.println(pH2); System.out.println(pH3); System.out.println(pH4); System.out.println(pH5);
-        System.out.println(pH6); System.out.println(pH7); System.out.println(pH8); System.out.println(pH9); System.out.println(pH10);
-        System.out.println(pH11); System.out.println(pH12); System.out.println(pH13); System.out.println(pH14); System.out.println(pH15);*/
 
 /*        ReceiverBankingInfo bankingInfo1pH1 = new ReceiverBankingInfo();
         Claim claim1pH1 = new Claim();
