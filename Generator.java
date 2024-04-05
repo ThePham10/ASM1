@@ -86,7 +86,7 @@ public class Generator {
         String policyOwner = policyHolder.getInsuranceCard().getPolicyOwner();
         policyHolder.setPolicyOwner(policyOwner);
 
-        return new PolicyHolder(customerID, fullName, insuranceCard, policyOwner);
+        return new PolicyHolder(customerID, fullName,policyOwner, insuranceCard);
     }
 
     public static Dependent createDependent(Dependent dependent, PolicyHolder policyHolder) {

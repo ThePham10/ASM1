@@ -11,8 +11,7 @@ public class PolicyHolder extends Customer implements DependentList {
         dependentList = new ArrayList<Dependent>();
     }
 
-    public PolicyHolder(String customerID, String fullName, InsuranceCard insuranceCard,
-                        String policyOwner) {
+    public PolicyHolder(String customerID, String fullName, String policyOwner, InsuranceCard insuranceCard) {
         super(customerID, fullName, insuranceCard);
         this.policyOwner = policyOwner;
         dependentList = new ArrayList<Dependent>();
