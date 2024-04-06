@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Generator {
@@ -89,7 +90,7 @@ public class Generator {
         return new PolicyHolder(customerID, fullName,policyOwner, insuranceCard);
     }
 
-    public static Dependent createDependent(Dependent dependent, PolicyHolder policyHolder) {
+    public static Dependent createDependent(Dependent dependent) {
         InsuranceCard insuranceCard = new InsuranceCard();
         dependent.createInsuranceCard(insuranceCard);
         dependent.setInsuranceCard(insuranceCard);
@@ -108,9 +109,47 @@ public class Generator {
         fullName = scanName.nextLine();
         dependent.setFullName(fullName);
 
-        dependent.setPolicyHolder(policyHolder);
+        String policyHolderName;
+        System.out.println("Enter policy holder's name: ");
+        Scanner scanpHName = new Scanner(System.in);
+        policyHolderName = scanpHName.nextLine();
+        dependent.setPolicyHolderName(policyHolderName);
 
-        return new Dependent(customerID, fullName, insuranceCard, policyHolder);
+        return new Dependent(customerID, fullName, insuranceCard, policyHolderName, null);
     }
 
+    public static void setClaimToPolicyHolder(List<PolicyHolder> policyHolders, List<Claim> claims) {
+        for (PolicyHolder aPolicyHolder:policyHolders) {
+            for (Claim aClaim:claims) {
+                if ((aClaim.getCardID().equals(aPolicyHolder.getInsuranceCard().getInsuranceCardID())) &&
+                        aClaim.getBankingInfo().getName().equals(aPolicyHolder.getFullName())) {
+                    aClaim.setInsuredPerson(aPolicyHolder);
+                    aPolicyHolder.add(aClaim);
+                }
+            }
+        }
+    }
+
+    public static void setClaimToDependent(List<Dependent> dependents, List<Claim> claims) {
+        for (Dependent aDependent:dependents) {
+            for (Claim aClaim:claims) {
+                if ((aClaim.getCardID().equals(aDependent.getInsuranceCard().getInsuranceCardID())) &&
+                        aClaim.getBankingInfo().getName().equals(aDependent.getFullName())) {
+                    aClaim.setInsuredPerson(aDependent);
+                    aDependent.add(aClaim);
+                }
+            }
+        }
+    }
+
+    public static void setDependentToPolicyHolder(List<PolicyHolder> policyHolders, List<Dependent> dependents) {
+        for (PolicyHolder aPolicyHolder:policyHolders) {
+            for (Dependent aDependent:dependents) {
+                if (aDependent.getPolicyHolderName().equals(aPolicyHolder.getFullName())) {
+                    aDependent.setPolicyHolder(aPolicyHolder);
+                    aPolicyHolder.addDependent(aDependent);
+                }
+            }
+        }
+    }
 }

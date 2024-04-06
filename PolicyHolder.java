@@ -36,7 +36,7 @@ public class PolicyHolder extends Customer implements DependentList {
 
     @Override
     public void addDependent(Dependent dependent) {
-        if (!(dependentList.contains(dependent))) {
+        if (!(dependentList.contains(dependent)) && dependent.getPolicyHolderName().equals(this.getFullName())) {
             dependentList.add(dependent);
         } else {
             System.out.println("Dependent is already on the list!");
@@ -45,7 +45,7 @@ public class PolicyHolder extends Customer implements DependentList {
 
     @Override
     public void deleteDependent(Dependent dependent) {
-        if (dependentList.contains(dependent) && dependent != null) {
+        if (dependentList.contains(dependent)) {
             dependentList.remove(dependent);
         } else {
             System.out.println("Dependent is not found on the list!");

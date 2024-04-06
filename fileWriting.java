@@ -51,54 +51,6 @@ public class fileWriting {
         }
     }
 
-    public static void writeDependentIntoFile(List<Dependent> dependents) throws IOException {
-        String filePath2 = "Dependent.txt";
-        File file2 = new File(filePath2);
-        try {
-            // Create the file
-            boolean isDependentTXTCreated = file2.createNewFile();
-
-            if (isDependentTXTCreated) {
-                try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(filePath2))) {
-                    for (Dependent aDependent:dependents) {
-                        writer2.write(aDependent.getCustomerID() + "\t" +
-                                aDependent.getFullName() + "\t" +
-                                aDependent.getPolicyHolder().getPolicyOwner() + "\t" +
-                                aDependent.getInsuranceCard().getInsuranceCardID() + "\t" +
-                                aDependent.getInsuranceCard().getExpirationDate() + "\t" +
-                                aDependent.getPolicyHolder().getFullName());
-                        writer2.newLine();
-                    }
-                    System.out.println("Dependents are written to Dependent.txt successfully.");
-                } catch (IOException e) {
-                    System.out.println("There is an error while writing to Dependent.txt.");
-                    e.printStackTrace();
-                }
-                System.out.println("Dependent.txt is opened/created successfully.");
-            } else {
-                try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(filePath2))) {
-                    for (Dependent aDependent:dependents) {
-                        writer2.write(aDependent.getCustomerID() + "\t" +
-                                aDependent.getFullName() + "\t" +
-                                aDependent.getPolicyHolder().getPolicyOwner() + "\t" +
-                                aDependent.getInsuranceCard().getInsuranceCardID() + "\t" +
-                                aDependent.getInsuranceCard().getExpirationDate() + "\t" +
-                                aDependent.getPolicyHolder().getFullName());
-                        writer2.newLine();
-                    }
-                    System.out.println("Dependents are written to Dependent.txt successfully.");
-                } catch (IOException e) {
-                    System.out.println("There is an error while writing to Dependent.txt.");
-                    e.printStackTrace();
-                }
-                System.out.println("Dependent.txt is opened/created successfully.");
-            }
-        } catch (IOException e) {
-            System.out.println("There is an error while opening/creating to Dependent.txt.");
-            e.printStackTrace();
-        }
-    }
-
     public static void writeClaimIntoFile(List<Claim> claims) throws IOException {
         String filePath1 = "Claim.txt";
         File file1 = new File(filePath1);
@@ -149,6 +101,54 @@ public class fileWriting {
             }
         } catch (IOException e) {
             System.out.println("There is an error while opening/creating to Claim.txt.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeDependentIntoFile(List<Dependent> dependents) throws IOException {
+        String filePath2 = "Dependent.txt";
+        File file2 = new File(filePath2);
+        try {
+            // Create the file
+            boolean isDependentTXTCreated = file2.createNewFile();
+
+            if (isDependentTXTCreated) {
+                try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(filePath2))) {
+                    for (Dependent aDependent:dependents) {
+                        writer2.write(aDependent.getCustomerID() + "\t" +
+                                aDependent.getFullName() + "\t" +
+                                aDependent.getPolicyHolder().getPolicyOwner() + "\t" +
+                                aDependent.getInsuranceCard().getInsuranceCardID() + "\t" +
+                                aDependent.getInsuranceCard().getExpirationDate() + "\t" +
+                                aDependent.getPolicyHolderName());
+                        writer2.newLine();
+                    }
+                    System.out.println("Dependents are written to Dependent.txt successfully.");
+                } catch (IOException e) {
+                    System.out.println("There is an error while writing to Dependent.txt.");
+                    e.printStackTrace();
+                }
+                System.out.println("Dependent.txt is opened/created successfully.");
+            } else {
+                try (BufferedWriter writer2 = new BufferedWriter(new FileWriter(filePath2))) {
+                    for (Dependent aDependent:dependents) {
+                        writer2.write(aDependent.getCustomerID() + "\t" +
+                                aDependent.getFullName() + "\t" +
+                                aDependent.getPolicyHolder().getPolicyOwner() + "\t" +
+                                aDependent.getInsuranceCard().getInsuranceCardID() + "\t" +
+                                aDependent.getInsuranceCard().getExpirationDate() + "\t" +
+                                aDependent.getPolicyHolderName());
+                        writer2.newLine();
+                    }
+                    System.out.println("Dependents are written to Dependent.txt successfully.");
+                } catch (IOException e) {
+                    System.out.println("There is an error while writing to Dependent.txt.");
+                    e.printStackTrace();
+                }
+                System.out.println("Dependent.txt is opened/created successfully.");
+            }
+        } catch (IOException e) {
+            System.out.println("There is an error while opening/creating to Dependent.txt.");
             e.printStackTrace();
         }
     }

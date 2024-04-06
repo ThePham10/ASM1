@@ -99,16 +99,18 @@ public class Customer implements ClaimDAO{
     public void add(Claim claim) {
         if (this.checkClaimID(claim.getClaimID())) {
             claimList.add(claim);
+        } else {
+            System.out.println("This claim is already added to the list.");
         }
-        System.out.println("This claim is already added to the list.");
     }
 
     @Override
     public void delete(Claim claim) {
         if (this.claimList.contains(claim)) {
             claimList.remove(claim);
+        } else {
+            System.out.println("This claim is not found on the list.");
         }
-        System.out.println("This claim is not on the list.");
     }
 
     @Override

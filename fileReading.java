@@ -1,16 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class fileReading {
-    public static void main(String[] args) throws IOException {
-        List<PolicyHolder> policyHolders = new ArrayList<>();
-        List<Claim> claims = new ArrayList<>();
-        List<Dependent> dependents = new ArrayList<>();
 
+    public static void readPolicyHolderFromFile(List<PolicyHolder> policyHolders) throws IOException {
         String filePath = "PolicyHolder.txt";
         String customerID, fullName, policyOwner, insuranceCardID, expirationDate, each_line;
 
@@ -30,10 +26,11 @@ public class fileReading {
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while reading the file.");
+            System.out.println("There is an error while reading PolicyHolder.txt.");
             e.printStackTrace();
         }
-
+    }
+    public static void readClaimFromFile(List<Claim> claims) throws IOException {
         String filePath1 = "Claim.txt";
         String claimID, cardID, status, examDate, claimDate, bankName, fullNameInBank, bankNumber, each_line1;
         double amount;
@@ -57,22 +54,33 @@ public class fileReading {
                 }
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while reading the file.");
+            System.out.println("There is an error while reading Claim.txt.");
             e.printStackTrace();
         }
-       for (PolicyHolder aPolicyHolder:policyHolders) {
-           for (Claim aClaim:claims) {
-               if ((aClaim.getCardID().equals(aPolicyHolder.getInsuranceCard().getInsuranceCardID())) &&
-               aClaim.getBankingInfo().getName().equals(aPolicyHolder.getFullName())) {
-                   aClaim.setInsuredPerson(aPolicyHolder);
-                   aPolicyHolder.add(aClaim);
-               }
-           }
-       }
+    }
+    public static void readDependentFromFile(List<Dependent> dependents) throws IOException {
+        String filePath2 = "Dependent.txt";
+        String customerID, fullName, policyOwner, insuranceCardID, expirationDate, policyHolderName, each_line2;
 
-        for (PolicyHolder ApolicyHolder:policyHolders) {
-            System.out.println(ApolicyHolder.toString());
+        try (BufferedReader reader2 = new BufferedReader(new FileReader(filePath2))) {
+            while ((each_line2 = reader2.readLine()) != null) {
+                StringTokenizer inReader2 = new StringTokenizer(each_line2, "\t");
+                if (inReader2.countTokens() == 6) {
+                    customerID = inReader2.nextToken();
+                    fullName = inReader2.nextToken();
+                    policyOwner = inReader2.nextToken();
+                    insuranceCardID = inReader2.nextToken();
+                    expirationDate = inReader2.nextToken();
+                    policyHolderName = inReader2.nextToken();
+
+                    InsuranceCard insuranceCard = new InsuranceCard(insuranceCardID, policyOwner, expirationDate, null);
+                    Dependent dP = new Dependent(customerID, fullName, insuranceCard, policyHolderName, null);
+                    dependents.add(dP);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("There is an error while reading PolicyHolder.txt.");
+            e.printStackTrace();
         }
-
     }
 }
