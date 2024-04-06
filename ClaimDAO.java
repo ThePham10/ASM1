@@ -1,5 +1,9 @@
 import java.util.List;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public interface ClaimDAO extends DAO<Claim> {
     @Override
     void add(Claim claim);

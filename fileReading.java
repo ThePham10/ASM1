@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class fileReading {
 
     public static void readPolicyHolderFromFile(List<PolicyHolder> policyHolders) throws IOException {

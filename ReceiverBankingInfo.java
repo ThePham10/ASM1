@@ -1,3 +1,7 @@
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class ReceiverBankingInfo {
     private String bank;
     private String name;

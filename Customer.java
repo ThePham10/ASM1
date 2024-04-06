@@ -1,6 +1,10 @@
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class Customer implements ClaimDAO{
     private String customerID;
     private String fullName;

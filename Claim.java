@@ -1,5 +1,9 @@
 import java.util.List;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class Claim {
     private String claimID;
     private Customer insuredPerson;

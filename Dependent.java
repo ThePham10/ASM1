@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class Dependent extends Customer {
     private String policyHolderName;
     private PolicyHolder policyHolder;

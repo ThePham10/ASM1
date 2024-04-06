@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class PolicyHolder extends Customer implements DependentList {
     private String policyOwner;
     private List<Dependent> dependentList;

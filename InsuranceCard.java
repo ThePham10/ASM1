@@ -1,3 +1,7 @@
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class InsuranceCard {
     private String insuranceCardID;
     private Customer cardHolder;

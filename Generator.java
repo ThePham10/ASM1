@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class Generator {
 
     public static Claim createClaim(Claim claim, Customer customer, ReceiverBankingInfo bankingInfo) {

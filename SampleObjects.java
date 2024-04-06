@@ -2,6 +2,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class SampleObjects {
     public static void main(String[] args) throws IOException {
         List<PolicyHolder> policyHolders = new ArrayList<>();

@@ -4,6 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/*
+ @author <Pham Thanh The - S3981133>
+*/
+
 public class fileWriting {
     public static void writePolicyHolderIntoFile(List<PolicyHolder> policyHolders) throws IOException {
         String filePath = "PolicyHolder.txt";
