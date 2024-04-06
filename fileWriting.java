@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class fileWriting {
     public static void main(String[] args) throws IOException {
         List<PolicyHolder> policyHolders = new ArrayList<>();
+        List<Claim> claims = new ArrayList<>();
 
         String filePath = "PolicyHolder.txt";
         File file = new File(filePath);
@@ -47,15 +48,22 @@ public class fileWriting {
         PolicyHolder pH15 = new PolicyHolder();
         pH15 = new PolicyHolder("C0000000015", "KAY TRAN", "MTP ENT", new InsuranceCard("1111111115", "MTP ENT", "2025/04/04", pH15));
 
+        Claim claim1pH1 = new Claim("F1000000001", "1111111101", 65.99, "Done", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("VISA", "JANG WONYOUNG", "1515152323"), pH1);
+        Claim claim2pH1 = new Claim("F1000000002", "1111111101", 66.99, "Processing", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("Shinhan Bank", "JANG WONYOUNG", "1515152222"), pH1);
+        Claim claim1pH5 = new Claim("F5000000001", "1111111105", 70.88, "New", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("VISA", "KHONG TU QUYNH", "9819191919"), pH5);
+        Claim claim2pH5 = new Claim("F5000000002", "1111111105", 26.46, "New", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("SACOMBANK", "KHONG TU QUYNH", "2345673456"), pH5);
+        Claim claim3pH5 = new Claim("F5000000003", "1111111105", 43.00, "Processing", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("EXIMBANK", "KHONG TU QUYNH", "2345673456"), pH5);
+        pH1.add(claim1pH1); claims.add(claim1pH1);
+
         policyHolders.add(pH1); policyHolders.add(pH2); policyHolders.add(pH3); policyHolders.add(pH4); policyHolders.add(pH5);
         policyHolders.add(pH6); policyHolders.add(pH7); policyHolders.add(pH8); policyHolders.add(pH9); policyHolders.add(pH10);
         policyHolders.add(pH11); policyHolders.add(pH12); policyHolders.add(pH13); policyHolders.add(pH14); policyHolders.add(pH15);
 
         try {
             // Create the file
-            boolean isFileCreated = file.createNewFile();
+            boolean isPolicyHolderTXTCreated = file.createNewFile();
 
-            if (isFileCreated) {
+            if (isPolicyHolderTXTCreated) {
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
                     for (PolicyHolder policyHolder : policyHolders) {
                         writer.write(policyHolder.getCustomerID() + "\t" +
@@ -65,17 +73,54 @@ public class fileWriting {
                                 policyHolder.getInsuranceCard().getExpirationDate());
                         writer.newLine();
                     }
-                    System.out.println("Values written to the file successfully.");
+                    System.out.println("Policy Holders written to the file successfully.");
                 } catch (IOException e) {
                     System.out.println("An error occurred while writing to the file.");
                     e.printStackTrace();
                 }
-                System.out.println("File created successfully: " + file.getAbsolutePath());
+                System.out.println("PolicyHolder.txt created successfully: " + file.getAbsolutePath());
             } else {
-                System.out.println("File already exists.");
+                System.out.println("PolicyHolder.txt already exists.");
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while creating the file.");
+            System.out.println("An error occurred while creating PolicyHolder.txt.");
+            e.printStackTrace();
+        }
+
+        //pH1.add(new Claim("F0000000001", "1111111101", 65.99, "Done", "2024/04/06", "2024/04/06", new ReceiverBankingInfo("VISA", "JANG WONYOUNG", "1515152323")));
+        String filePath1 = "Claim.txt";
+        File file1 = new File(filePath1);
+        String claimID, cardID, status, examDate, claimDate, bankName, fullNameInBank, bankNumber;
+
+        try {
+            // Create the file
+            boolean isClaimTXTCreated = file1.createNewFile();
+
+            if (isClaimTXTCreated) {
+                try (BufferedWriter writer1 = new BufferedWriter(new FileWriter(filePath1))) {
+                    for (Claim aClaim:claims) {
+                        writer1.write(aClaim.getClaimID() + "\t" +
+                                aClaim.getCardID() + "\t" +
+                                aClaim.getAmount() + "\t" +
+                                aClaim.getStatus() + "\t" +
+                                aClaim.getExamDate() + "\t" +
+                                aClaim.getClaimDate() + "\t" +
+                                aClaim.getBankingInfo().getBank() + "\t"+
+                                aClaim.getBankingInfo().getName() + "\t"+
+                                aClaim.getBankingInfo().getBankNumber());
+                        writer1.newLine();
+                    }
+                    System.out.println("Claims written to the file successfully.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred while writing to the Claim.txt.");
+                    e.printStackTrace();
+                }
+                System.out.println("Claim.txt created successfully: " + file.getAbsolutePath());
+            } else {
+                System.out.println("Claim.txt already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while Claim.txt.");
             e.printStackTrace();
         }
 

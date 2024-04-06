@@ -38,7 +38,8 @@ public class fileReading {
         }
 
         for (PolicyHolder ApolicyHolder:policyHolders) {
-            policyHolders.get(2);
+            ApolicyHolder = policyHolders.get(2);
+            System.out.println(ApolicyHolder.toString());
         }
     }
 }

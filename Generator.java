@@ -34,12 +34,12 @@ public class Generator {
         claim.setStatus(status);
 
         Date examDate1 = new Date();
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd");
         String examDate2 = dateFormat1.format(examDate1);
         claim.setClaimDate(examDate2);
 
         Date claimDate1 = new Date();
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
         String claimDate2 = dateFormat2.format(claimDate1);
         claim.setClaimDate(claimDate2);
 

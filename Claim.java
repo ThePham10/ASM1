@@ -20,16 +20,16 @@ public class Claim {
         this.claimDate = "default";
     }
 
-    public Claim(String claimID, Customer insuredPerson, String cardID, double amount, String status,
-                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo) {
+    public Claim(String claimID, String cardID, double amount, String status,
+                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo, , Customer insuredPerson) {
         this.claimID = claimID;
-        this.insuredPerson = insuredPerson;
         this.cardID = cardID;
         this.amount = amount;
         this.status = status;
         this.examDate = examDate;
         this.claimDate = claimDate;
         this.bankingInfo = bankingInfo;
+        this.insuredPerson = insuredPerson;
     }
 
     public void setStatus(String status) {
