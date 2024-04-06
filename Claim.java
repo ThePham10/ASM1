@@ -21,7 +21,7 @@ public class Claim {
     }
 
     public Claim(String claimID, String cardID, double amount, String status,
-                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo, , Customer insuredPerson) {
+                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo, Customer insuredPerson) {
         this.claimID = claimID;
         this.cardID = cardID;
         this.amount = amount;

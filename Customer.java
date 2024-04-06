@@ -65,11 +65,6 @@ public class Customer implements ClaimDAO{
     }
 
     @Override
-    public void add(Claim claim) {
-        claimList.add(claim);
-    }
-
-    @Override
     public void update(Claim claim) {
         System.out.println("1.Amount | 2.Status | 3.Banking Information");
         System.out.print("Select the information you want to update (in number): ");
@@ -101,8 +96,19 @@ public class Customer implements ClaimDAO{
     }
 
     @Override
+    public void add(Claim claim) {
+        if (this.checkClaimID(claim.getClaimID())) {
+            claimList.add(claim);
+        }
+        System.out.println("This claim is already added to the list.");
+    }
+
+    @Override
     public void delete(Claim claim) {
-        claimList.remove(claim);
+        if (this.claimList.contains(claim)) {
+            claimList.remove(claim);
+        }
+        System.out.println("This claim is not on the list.");
     }
 
     @Override

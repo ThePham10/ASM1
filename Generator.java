@@ -61,7 +61,7 @@ public class Generator {
         }
         claim.setBankNumber(bankNumber);
 
-        return new Claim(claimID, customer, insuranceCardID, amount, status, examDate2, claimDate2, new ReceiverBankingInfo(bankName, customerName, bankNumber));
+        return new Claim(claimID, insuranceCardID, amount, status, examDate2, claimDate2, new ReceiverBankingInfo(bankName, customerName, bankNumber), customer);
     }
 
     public static PolicyHolder createPolicyHolder(PolicyHolder policyHolder) {
