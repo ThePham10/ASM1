@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -34,15 +35,11 @@ public class Generator {
         String status = "New";
         claim.setStatus(status);
 
-        Date examDate1 = new Date();
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy/MM/dd");
-        String examDate2 = dateFormat1.format(examDate1);
-        claim.setClaimDate(examDate2);
+        String examDate1 = generateDate();
+        claim.setClaimDate(examDate1);
 
-        Date claimDate1 = new Date();
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
-        String claimDate2 = dateFormat2.format(claimDate1);
-        claim.setClaimDate(claimDate2);
+        String claimDate1 = generateDate();
+        claim.setClaimDate(claimDate1);
 
         claim.setBankingInfo(bankingInfo);
         String customerName = customer.getFullName();
@@ -62,7 +59,21 @@ public class Generator {
         }
         claim.setBankNumber(bankNumber);
 
-        return new Claim(claimID, insuranceCardID, amount, status, examDate2, claimDate2, new ReceiverBankingInfo(bankName, customerName, bankNumber), customer);
+        return new Claim(claimID, insuranceCardID, amount, status, examDate1, claimDate1, new ReceiverBankingInfo(bankName, customerName, bankNumber), customer);
+    }
+
+    public static String generateDate() {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return (String) dateFormat.format(date);
+    }
+
+    public static String generateExpirationDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, 1);
+        Date expirationDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        return (String) dateFormat.format(expirationDate);
     }
 
     public static PolicyHolder createPolicyHolder(PolicyHolder policyHolder) {

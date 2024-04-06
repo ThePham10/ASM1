@@ -14,7 +14,10 @@ public class MainProgram {
         Generator.setClaimToPolicyHolder(policyHolders, claims);
         Generator.setClaimToDependent(dependents, claims);
         Generator.setDependentToPolicyHolder(policyHolders, dependents);
-        System.out.println(policyHolders);
+
+        while (true) {
+            System.out.println("WELCOME TO INSURANCE CLAIMS MANAGEMENT PROGRAM");
+        }
 
 
     }
