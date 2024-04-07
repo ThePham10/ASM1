@@ -68,7 +68,19 @@ public class MainProgram {
                 System.out.println();
                 PolicyHolder newPolicyHolder = new PolicyHolder();
                 Generator.createPolicyHolder(newPolicyHolder);
-                policyHolders.add(newPolicyHolder);
+                Iterator<PolicyHolder> iterator = policyHolders.iterator();
+                while (iterator.hasNext()) {
+                    PolicyHolder aPH = iterator.next();
+                    if (!(aPH.getCustomerID().equals(newPolicyHolder.getCustomerID()))) {
+                        policyHolders.add(newPolicyHolder);
+                        System.out.println("Policy Holder " + newPolicyHolder.getFullName() + " is created");
+                        break;
+                    }
+                    else {
+                        System.out.println("There is an error while creating New Dependent: Duplicate ID");
+                        break;
+                    }
+                }
             }
             if (choice == 4) {
                 System.out.println();
@@ -86,7 +98,7 @@ public class MainProgram {
                     if (aPH.getCustomerID().equals(pH_ID)) {
                         findPH = true;
                         policyHolders.remove(aPH);
-                        System.out.println("Policy Holder with ID " + pH_ID + " is deleted.");
+                        System.out.println("Policy Holder with ID " + pH_ID + " is deleted");
                         System.out.println();
                         break;
                     }
@@ -166,29 +178,50 @@ public class MainProgram {
             }
             if (choice == 8) {
                 System.out.println();
-                String dP_ID = "";
-                while (dP_ID.length() != 11) {
-                    System.out.print("Enter Dependent's ID ('C' + 10 number digits): ");
+                String pH_ID = "";
+                while (pH_ID.length() != 11) {
+                    System.out.print("Enter Policy Holder's ID ('C' + 10 number digits): ");
                     Scanner scanID = new Scanner(System.in);
-                    dP_ID = scanID.next();
+                    pH_ID = scanID.next();
                 }
 
-                boolean findDP = false;
-                Iterator<Dependent> iterator = dependents.iterator();
-                while (iterator.hasNext()) {
-                    Dependent aDp = iterator.next();
-                    if (aDp.getCustomerID().equals(dP_ID)) {
-                        findDP = true;
-                        dependents.remove(aDp);
-                        System.out.println("Dependent with ID " + dP_ID + " is deleted.");
-                        System.out.println();
-                        break;
+                boolean findPH = false;
+                Iterator<PolicyHolder> iterator1 = policyHolders.iterator();
+                while (iterator1.hasNext()) {
+                    PolicyHolder aPH = iterator1.next();
+                    if (aPH.getCustomerID().equals(pH_ID)) {
+                        findPH = true;
+                        boolean findDP = false;
+                        String dP_ID = "";
+                        while (dP_ID.length() != 11) {
+                            System.out.print("Enter Dependent's ID ('C' + 10 number digits): ");
+                            Scanner scanID1 = new Scanner(System.in);
+                            dP_ID = scanID1.next();
+                        }
+                        Iterator<Dependent> iterator = dependents.iterator();
+                        while (iterator.hasNext()) {
+                            Dependent aDp = iterator.next();
+                            if (aDp.getCustomerID().equals(dP_ID)) {
+                                findDP = true;
+                                aPH.getDependentList().remove(aDp);
+                                dependents.remove(aDp);
+                                System.out.println("Dependent with ID " + dP_ID + " is deleted");
+                                System.out.println();
+                                break;
+                            }
+                        }
+                        if (!findDP) {
+                            System.out.println("There is no Dependent with ID " + dP_ID);
+                            System.out.println();
+                        }
+
                     }
                 }
-                if (!findDP) {
-                    System.out.println("There is no Dependent with ID " + dP_ID);
+                if (!findPH) {
+                    System.out.println("There is no Policy Holder with ID " + pH_ID);
                     System.out.println();
                 }
+
             }
             if (choice == 9) {
                 System.out.println();
@@ -400,12 +433,17 @@ public class MainProgram {
                                 Scanner scanID = new Scanner(System.in);
                                 claim_ID = scanID.next();
                             }
-                            for (Claim aClaim:aPH.getAll()) {
+
+                            Iterator<Claim> iterator1 = claims.iterator();
+                            while (iterator1.hasNext()) {
+                                Claim aClaim = iterator1.next();
                                 if (aClaim.getClaimID().equals(claim_ID)) {
                                     findClaim = true;
                                     aPH.delete(aClaim);
                                     claims.remove(aClaim);
-                                    System.out.println("Claim with ID " + claim_ID + " is deleted");
+                                    System.out.println("Dependent with ID " + claim_ID + " is deleted");
+                                    System.out.println();
+                                    break;
                                 }
                             }
                             if (!findClaim) {
@@ -443,7 +481,6 @@ public class MainProgram {
                                 Scanner scanID = new Scanner(System.in);
                                 claim_ID1 = scanID.next();
                             }
-
                             Iterator<Claim> iterator1 = claims.iterator();
                             while (iterator1.hasNext()) {
                                 Claim aClaim = iterator1.next();
@@ -507,7 +544,7 @@ public class MainProgram {
                             for (Claim aClaim:aPH.getAll()) {
                                 if (aClaim.getClaimID().equals(claim_ID)) {
                                     aPH.update(aClaim);
-                                    System.out.println("Claim with ID " + claim_ID + " is updated with new information.");
+                                    System.out.println("Claim with ID " + claim_ID + " is updated with new information");
                                     findClaim = true;
                                     break;
                                 }
@@ -553,7 +590,7 @@ public class MainProgram {
                                 Claim aClaim = iterator1.next();
                                 if (aClaim.getClaimID().equals(claim_ID1)) {
                                     aDp.update(aClaim);
-                                    System.out.println("Claim with ID " + claim_ID1 + " is updated with new information.");
+                                    System.out.println("Claim with ID " + claim_ID1 + " is updated with new information");
                                     findClaim = true;
                                     break;
                                 }
@@ -582,7 +619,5 @@ public class MainProgram {
                 break;
             }
         }
-
-
     }
 }

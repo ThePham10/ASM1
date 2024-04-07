@@ -73,7 +73,8 @@ public class fileWriting {
                                 aClaim.getClaimDate() + "\t" +
                                 aClaim.getBankingInfo().getBank() + "\t"+
                                 aClaim.getBankingInfo().getName() + "\t"+
-                                aClaim.getBankingInfo().getBankNumber());
+                                aClaim.getBankingInfo().getBankNumber() + "\t" +
+                                aClaim.getDocumentList());
                         writer1.newLine();
                     }
                     System.out.println("Claims are written to Claim.txt successfully.");
@@ -93,7 +94,8 @@ public class fileWriting {
                                 aClaim.getClaimDate() + "\t" +
                                 aClaim.getBankingInfo().getBank() + "\t"+
                                 aClaim.getBankingInfo().getName() + "\t"+
-                                aClaim.getBankingInfo().getBankNumber());
+                                aClaim.getBankingInfo().getBankNumber() + "\t" +
+                                aClaim.getDocumentList());
                         writer1.newLine();
                     }
                     System.out.println("Claims are written to Claim.txt successfully.");

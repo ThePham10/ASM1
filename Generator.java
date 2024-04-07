@@ -46,6 +46,9 @@ public class Generator {
         String claimDate1 = generateDate();
         claim.setClaimDate(claimDate1);
 
+        String documentList = claimID + "_" + customer.getFullName() + "_" +customer.getCustomerID() +".pdf";
+        claim.setDocumentList(documentList);
+
         claim.setBankingInfo(bankingInfo);
         String customerName = customer.getFullName();
         claim.setNameInBank(customerName);
@@ -63,7 +66,7 @@ public class Generator {
         }
         claim.setBankNumber(bankNumber);
 
-        return new Claim(claimID, insuranceCardID, amount, status, examDate1, claimDate1, new ReceiverBankingInfo(bankName, customerName, bankNumber), customer);
+        return new Claim(claimID, insuranceCardID, amount, status, examDate1, claimDate1, new ReceiverBankingInfo(bankName, customerName, bankNumber), documentList, customer);
     }
 
     public static String generateDate() {

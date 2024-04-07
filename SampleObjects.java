@@ -59,14 +59,14 @@ public class SampleObjects {
 
         dependents.add(dP1); dependents.add(dP2); dependents.add(dP3); dependents.add(dP4); dependents.add(dP5);
 
-        Claim claim1pH1 = new Claim("F1000000001", "1000000001", 65.99, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("VISA", "JANG WONYOUNG", "1515152323"), pH1);
-        Claim claim2pH1 = new Claim("F1000000002", "1000000001", 66.99, "Processing", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("Shinhan Bank", "JANG WONYOUNG", "1515152222"), pH1);
-        Claim claim1pH5 = new Claim("F5000000001", "1000000005", 70.88, "New", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("VISA", "KHONG TU QUYNH", "9819191919"), pH5);
-        Claim claim2pH5 = new Claim("F5000000002", "1000000005", 26.46, "New", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("SACOMBANK", "KHONG TU QUYNH", "2345673456"), pH5);
-        Claim claim3pH5 = new Claim("F5000000003", "1000000005", 43.00, "Processing", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("EXIMBANK", "KHONG TU QUYNH", "2345673456"), pH5);
+        Claim claim1pH1 = new Claim("F1000000001", "1000000001", 65.99, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("VISA", "JANG WONYOUNG", "1515152323"), "F1000000001_JANG WONYOUNG_C0000000001.pdf", pH1);
+        Claim claim2pH1 = new Claim("F1000000002", "1000000001", 66.99, "Processing", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("Shinhan Bank", "JANG WONYOUNG", "1515152222"), "F1000000002_JANG WONYOUNG_C0000000001.pdf", pH1);
+        Claim claim1pH5 = new Claim("F5000000001", "1000000005", 70.88, "New", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("VISA", "KHONG TU QUYNH", "9819191919"), "F5000000001_KHONG TU QUYNH_C0000000005.pdf.pdf", pH5);
+        Claim claim2pH5 = new Claim("F5000000002", "1000000005", 26.46, "New", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("SACOMBANK", "KHONG TU QUYNH", "2345673456"), "F5000000002_KHONG TU QUYNH_C0000000005.pdf", pH5);
+        Claim claim3pH5 = new Claim("F5000000003", "1000000005", 43.00, "Processing", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("EXIMBANK", "KHONG TU QUYNH", "2345673456"), "F5000000003_KHONG TU QUYNH_C0000000005.pdf", pH5);
 
-        Claim claim1dP1 = new Claim("F1100000001", "1100000001", 99.99, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("AGRIBANK", "FUBAO", "1234567898"), dP1);
-        Claim claim2dP1 = new Claim("F1100000002", "1100000001", 88.88, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("MB BANK", "FUBAO", "9876543212"), dP1);
+        Claim claim1dP1 = new Claim("F1100000001", "1100000001", 99.99, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("AGRIBANK", "FUBAO", "1234567898"), "F1100000001_FUBAO_C1000000001.pdf", dP1);
+        Claim claim2dP1 = new Claim("F1100000002", "1100000001", 88.88, "Done", "2023/12/12", Generator.generateDate(), new ReceiverBankingInfo("MB BANK", "FUBAO", "9876543212"), "F1100000002_FUBAO_C1000000001.pdf", dP1);
 
         pH1.add(claim1pH1); pH1.add(claim2pH1);
         pH5.add(claim1pH5); pH5.add(claim2pH5); pH5.add(claim3pH5);

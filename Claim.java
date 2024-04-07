@@ -20,10 +20,11 @@ public class Claim {
         this.status = "default";
         this.examDate = "default";
         this.claimDate = "default";
+        this.documentList = "default";
     }
 
     public Claim(String claimID, String cardID, double amount, String status,
-                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo, Customer insuredPerson) {
+                 String examDate, String claimDate, ReceiverBankingInfo bankingInfo, String documentList, Customer insuredPerson) {
         this.claimID = claimID;
         this.cardID = cardID;
         this.amount = amount;
@@ -31,6 +32,7 @@ public class Claim {
         this.examDate = examDate;
         this.claimDate = claimDate;
         this.bankingInfo = bankingInfo;
+        this.documentList = documentList;
         this.insuredPerson = insuredPerson;
     }
 
@@ -110,6 +112,10 @@ public class Claim {
     public void setNameInBank(String nameInBank) { this.bankingInfo.setName(nameInBank); }
     public void setBankNumber(String bankNumber) { this.bankingInfo.setBankNumber(bankNumber); }
 
+    public String getDocumentList() { return documentList; }
+
+    public void setDocumentList(String documentList) { this.documentList = documentList; }
+
     @Override
     public String toString() {
         return  "\nClaimID: " + claimID +
@@ -119,6 +125,7 @@ public class Claim {
                 ", Status: " + status +
                 ", ExamDate: " + examDate +
                 ", ClaimDate: " + claimDate +
-                ", ReceiverBankingInfo: " + bankingInfo + "\n";
+                ", ReceiverBankingInfo: " + bankingInfo +
+                ", DocumentList: " + documentList + "\n";
     }
 }

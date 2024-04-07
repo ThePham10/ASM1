@@ -36,13 +36,13 @@ public class fileReading {
     }
     public static void readClaimFromFile(List<Claim> claims) throws IOException {
         String filePath1 = "Claim.txt";
-        String claimID, cardID, status, examDate, claimDate, bankName, fullNameInBank, bankNumber, each_line1;
+        String claimID, cardID, status, examDate, claimDate, bankName, fullNameInBank, bankNumber, documentList, each_line1;
         double amount;
 
         try (BufferedReader reader1 = new BufferedReader(new FileReader(filePath1))) {
             while ((each_line1 = reader1.readLine()) != null) {
                 StringTokenizer inReader1 = new StringTokenizer(each_line1, "\t");
-                if (inReader1.countTokens() == 9) {
+                if (inReader1.countTokens() == 10) {
                     claimID = inReader1.nextToken();
                     cardID = inReader1.nextToken();
                     amount = Double.parseDouble(inReader1.nextToken());
@@ -52,8 +52,9 @@ public class fileReading {
                     bankName = inReader1.nextToken();
                     fullNameInBank = inReader1.nextToken();
                     bankNumber = inReader1.nextToken();
+                    documentList = inReader1.nextToken();
 
-                    Claim claim = new Claim(claimID, cardID, amount, status, examDate, claimDate, new ReceiverBankingInfo(bankName, fullNameInBank, bankNumber), null);
+                    Claim claim = new Claim(claimID, cardID, amount, status, examDate, claimDate, new ReceiverBankingInfo(bankName, fullNameInBank, bankNumber), documentList, null);
                     claims.add(claim);
                 }
             }
