@@ -23,6 +23,7 @@ public class Claim {
         this.documentList = "default";
     }
 
+
     public Claim(String claimID, String cardID, double amount, String status,
                  String examDate, String claimDate, ReceiverBankingInfo bankingInfo, String documentList, Customer insuredPerson) {
         this.claimID = claimID;
@@ -36,6 +37,7 @@ public class Claim {
         this.insuredPerson = insuredPerson;
     }
 
+    //set value for the status of the rank
     public void setStatus(String status) {
         String[] statuses = {"New", "Processing", "Done"};
         boolean statusChecked = false;
@@ -50,6 +52,7 @@ public class Claim {
         }
     }
 
+    //Setter and Getter
     public String getClaimID() {
         return claimID;
     }

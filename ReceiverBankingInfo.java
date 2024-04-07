@@ -49,7 +49,4 @@ public class ReceiverBankingInfo {
                 ", Name: " + name +
                 ", bankingNumber: " + bankNumber;
     }
-
-    public void setBank() {
-    }
 }

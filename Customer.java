@@ -6,7 +6,7 @@ import java.util.Scanner;
  @author <Pham Thanh The - S3981133>
 */
 
-public class Customer implements ClaimDAO {
+public abstract class Customer implements ClaimDAO {
     private String customerID;
     private String fullName;
     private InsuranceCard insuranceCard;
