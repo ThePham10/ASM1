@@ -12,7 +12,7 @@ public class Generator {
 
     public static Claim createClaim(Claim claim, Customer customer, ReceiverBankingInfo bankingInfo) {
         String claimID = "";
-        while (claimID.length() != 11) {
+        while (claimID.length() != 11 && customer.checkClaimID(claimID)) {
             System.out.print("Create a claim's ID ('F' + 10 number digits): ");
             Scanner scanID = new Scanner(System.in);
             claimID = scanID.next();
@@ -30,17 +30,18 @@ public class Generator {
         String insuranceCardID = String.valueOf(customer.getInsuranceCard().getInsuranceCardID());
         claim.setCardID(insuranceCardID);
 
-        double amount;
         System.out.print("Enter the amount for the claim: ");
         Scanner scanAmount = new Scanner(System.in);
-        amount = scanAmount.nextDouble();
+        double amount = scanAmount.nextDouble();
         claim.setAmount(amount);
 
         String status = "New";
         claim.setStatus(status);
 
-        String examDate1 = generateDate();
-        claim.setClaimDate(examDate1);
+        System.out.print("Enter the Exam Date (yyyy/MM/dd) : ");
+        Scanner scanExamDate = new Scanner(System.in);
+        String examDate1 = scanAmount.next();
+        claim.setExamDate(examDate1);
 
         String claimDate1 = generateDate();
         claim.setClaimDate(claimDate1);
@@ -49,10 +50,9 @@ public class Generator {
         String customerName = customer.getFullName();
         claim.setNameInBank(customerName);
 
-        String bankName;
         System.out.println("Enter Bank's Name: ");
         Scanner scanBank = new Scanner(System.in);
-        bankName = scanBank.nextLine();
+        String bankName = scanBank.nextLine();
         claim.setBankName(bankName);
 
         String bankNumber = "";

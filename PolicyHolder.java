@@ -30,12 +30,12 @@ public class PolicyHolder extends Customer implements DependentList {
 
     public String toString() {
         return  "\nPolicy Holder:\n" +
-                "Policy Holder ID: " + getCustomerID() + "\n" +
-                "FullName: " + getFullName() + "\n" +
-                "InsuranceCard: " + getInsuranceCard().getInsuranceCardID() + "\n" +
-                "Policy Owner: " + policyOwner + "\n" +
+                "Policy Holder ID: " + getCustomerID() +
+                ", FullName: " + getFullName() +
+                ", InsuranceCard: " + getInsuranceCard().getInsuranceCardID() +
+                ", Policy Owner: " + policyOwner + "\n" +
                 "ClaimList: " + "\n" + getClaimList() + "\n" +
-                "Dependent List: " + "\n" + dependentList;
+                "Dependent List: " + "\n" + dependentList + "\n";
     }
 
     @Override
@@ -64,6 +64,15 @@ public class PolicyHolder extends Customer implements DependentList {
             }
         }
         return null;
+    }
+
+    public boolean checkDependentID(String dependentID) {
+        for (Dependent dp1:dependentList) {
+            if (dp1.getCustomerID().equals(dependentID)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

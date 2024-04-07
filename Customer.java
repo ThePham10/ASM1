@@ -1,11 +1,12 @@
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /*
  @author <Pham Thanh The - S3981133>
 */
 
-public class Customer implements ClaimDAO{
+public class Customer implements ClaimDAO {
     private String customerID;
     private String fullName;
     private InsuranceCard insuranceCard;
@@ -36,6 +37,7 @@ public class Customer implements ClaimDAO{
     public void setInsuranceCard(InsuranceCard insuranceCard) { this.insuranceCard = insuranceCard; }
 
     public InsuranceCard createInsuranceCard(InsuranceCard insuranceCard) {
+
         String insuranceCardID = "";
         while (insuranceCardID.length() != 10) {
             System.out.print("Create an insurance card's ID (10 number digits): ");
@@ -50,21 +52,18 @@ public class Customer implements ClaimDAO{
         policyOwner = scanPolicyOwner.nextLine();
         insuranceCard.setPolicyOwner(policyOwner);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.YEAR, 1);
-        Date expirationDate1 = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String expirationDate2 = dateFormat.format(expirationDate1);
-        insuranceCard.setExpirationDate(expirationDate2);
-        return new InsuranceCard(insuranceCardID, policyOwner, expirationDate2, this);
+        String expirationDate = Generator.generateExpirationDate();
+        insuranceCard.setExpirationDate(expirationDate);
+
+        return new InsuranceCard(insuranceCardID, policyOwner, expirationDate, this);
     }
 
     @Override
     public String toString() {
         return "Customer:\n" +
-                "CustomerID: " + customerID + "\n" +
-                "FullName: " + fullName + "\n" +
-                "InsuranceCard: " + insuranceCard.getInsuranceCardID() + "\n" +
+                "CustomerID: " + customerID +
+                ", FullName: " + fullName +
+                ", InsuranceCard: " + insuranceCard.getInsuranceCardID() + "\n" +
                 "ClaimList: " + "\n" + claimList + "\n" ;
     }
 
@@ -87,6 +86,7 @@ public class Customer implements ClaimDAO{
                 System.out.println("1.Bank Name | 2.Bank Number");
                 System.out.print("Select the information you want to update (in number): ");
                 int choice2 = scanner.nextInt();
+                scanner.nextLine();
                 if (choice2 == 1) {
                     System.out.println("Enter a new Bank's Name: ");
                     claim.setBankName(scanner.nextLine());

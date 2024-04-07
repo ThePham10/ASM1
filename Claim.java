@@ -1,5 +1,3 @@
-import java.util.List;
-
 /*
  @author <Pham Thanh The - S3981133>
 */
@@ -12,7 +10,7 @@ public class Claim {
     private String status;
     private String examDate;
     private String claimDate;
-    private List<Document> documentList;
+    private String documentList;
     private ReceiverBankingInfo bankingInfo;
 
     public Claim() {
@@ -48,16 +46,6 @@ public class Claim {
             this.status = status;
             statusChecked = true;
         }
-    }
-
-    public String generateClaimID () {
-        StringBuilder stringBuilder1 = new StringBuilder();
-        for (int i = 0; i < 10; i++) {
-            int randomNumber = (int) (Math.random() * 10);
-            stringBuilder1.append(randomNumber);
-        }
-        String randomString = stringBuilder1.toString();
-        return "C" + randomString;
     }
 
     public String getClaimID() {
